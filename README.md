@@ -64,6 +64,8 @@ H2_3 = [[np.cos(PT[i][0]), -np.sin(PT[i][0])*np.cos(PT[i][1]), np.sin(PT[i][0])*
 #H2_3 = np.array(np.around(H2_3,3))
 #print(H2_3)
 
+# Multiply Matrices
+
 H0_2 = np.dot(H0_1,H1_2)
 H0_3 = np.dot(H0_2, H2_3)
 
