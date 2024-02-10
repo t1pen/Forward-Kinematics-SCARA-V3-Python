@@ -6,14 +6,14 @@ Forward Kinematics Code for SCARA V3
 
 import numpy as np
 
-# link lengths in mm
+# Link Lengths in mm
 
 a1 = float(input("a1 = "))
 a2 = float(input("a2 = "))
 a3 = float(input("a3 = "))
 a4 = float(input("a4 = "))
 
-# joint variables: is mm if f, is degrees if theta\
+# Joint Variables: is mm if prismatic, is degrees if theta
 
 d1 = float(input("d1 = ")) #20 mm
 
@@ -21,12 +21,12 @@ T2 = float(input("T2 = ")) #30 deg
 
 T3 = float(input("T3 = ")) #-90 deg
 
-# Convert Rotation angles (deg to rad)
+# Convert Rotation Angles (Degrees to Radian)
 
 T2 = (T2/180)*np.pi
 T3 = (T3/180)*np.pi
 
-# Parametric Table
+# DH Parametric Table
 
 PT = [[(0.0/180)*np.pi, (0.0/180)*np.pi, 0, a1+d1],
       [(0.0/180)*np.pi+T2, (0.0/180)*np.pi, a2, 0],
@@ -52,6 +52,8 @@ H2_3 = [[np.cos(PT[i][0]), -np.sin(PT[i][0])*np.cos(PT[i][1]), np.sin(PT[i][0])*
         [0, np.sin(PT[i][1]), np.cos(PT[i][1]), PT[i][3]],
         [0, 0, 0, 1]]
 
+## Printing Homogeneous Transformation Matrices
+
 #print("H0_1 = ")
 #H0_1 = np.array(np.around(H0_1,3))
 #print(H0_1)
@@ -68,6 +70,8 @@ H2_3 = [[np.cos(PT[i][0]), -np.sin(PT[i][0])*np.cos(PT[i][1]), np.sin(PT[i][0])*
 
 H0_2 = np.dot(H0_1,H1_2)
 H0_3 = np.dot(H0_2, H2_3)
+
+# Print Resultant Matrix
 
 print("H0_3 = ")
 H0_3 = np.array(np.around(H0_3,3))
